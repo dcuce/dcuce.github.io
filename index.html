@@ -413,5 +413,33 @@ a{color:#0E1A2B}a:hover{color:#6D28D9}
 
 </div>
 
+
+<!-- 네이버 프리미엄로그분석 공통 스크립트 -->
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
+<script type="text/javascript">
+if (!wcs_add) var wcs_add={};
+wcs_add["wa"] = "s_1fb664b2519";
+if (!_nasa) var _nasa={};
+if(window.wcs){
+wcs.inflow();
+wcs_do();
+}
+</script>
+<!-- 네이버 전환 스크립트: 예약 버튼 = 신청/예약(4), 톡톡·전화 = 기타(5) -->
+<script type="text/javascript">
+function dcNaverConv(type){
+  if(!window.wcs) return;
+  var _nasa={};
+  _nasa["cnv"] = wcs.cnv(type,"1");
+  wcs_do(_nasa);
+}
+document.addEventListener("click", function(e){
+  var a = e.target.closest ? e.target.closest("a") : null;
+  if(!a) return;
+  var h = a.getAttribute("href") || "";
+  if(h.indexOf("booking.naver.com") > -1){ dcNaverConv("4"); }
+  else if(h.indexOf("talk.naver.com") > -1 || h.indexOf("tel:") === 0){ dcNaverConv("5"); }
+}, true);
+</script>
 </body>
 </html>
